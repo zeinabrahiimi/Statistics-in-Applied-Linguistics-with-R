@@ -1,6 +1,11 @@
+# In this project, the correlation analysis would be performed in R. 
+# This test is used when we want to assess the strength and direction of the
+# relationship between two variables.
+
+
 # Let's say we have an excel file containing 100 scores of grammar and speaking.
-# The dataset is in the repo.
-# Then, we want to check whether they are correlated with one another.
+# Assuming we checked the normality assumptions of the data, we can use correlation analysis 
+# to understand whether changes in grammar scores are connected with changes in speaking scores.
  
 
 #if not installed these libraries, please install them first and then load them.
@@ -20,7 +25,8 @@ data <- read_excel("CorrelationData.xlsx")
 # Descriptive statistics
 summary(data) # It shows Min, 1st Qu, Median, Mean, 3rd Qu., and Max
 
-# Scatter plot
+# Create a scatter plot to visualize the relationship between grammar and speaking scores.
+
 ggplot(data, aes(x = gr_Score, y = sp_Score)) +
   geom_point() +
   labs(title = "Scatter Plot of Grammar Scores vs. Listening Scores",
@@ -34,6 +40,8 @@ correlation <- cor(data$gr_Score, data$sp_Score)
 
 # Print the correlation coefficient
 print(paste("Correlation Coefficient:", correlation)) 
+
 # output: "Correlation Coefficient: 0.504050860415546"
 
-
+# As the result shows, there is a moderate positive correlation between grammar scores and speaking scores. 
+# This means that as grammar scores increase, speaking scores tend to increase as well, and vice versa.
