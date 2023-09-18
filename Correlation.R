@@ -8,7 +8,7 @@
 # to understand whether changes in grammar scores are connected with changes in speaking scores.
  
 
-#if not installed these libraries, please install them first and then load them.
+# If not installed these libraries, please install them first and then load them.
 # install.packages ("readxl") install.packages ("ggplot2") # install.packages("stats")
 library(readxl) # a library for reading excel files
 library(ggplot2) # a library for visualization
@@ -25,7 +25,7 @@ data <- read_excel("CorrelationData.xlsx")
 # Descriptive statistics
 summary(data) # It shows Min, 1st Qu, Median, Mean, 3rd Qu., and Max
 
-# Create a scatter plot to visualize the relationship between grammar and speaking scores.
+# Creating a scatter plot to visualize the relationship between grammar and speaking scores.
 
 ggplot(data, aes(x = gr_Score, y = sp_Score)) +
   geom_point() +
@@ -38,7 +38,7 @@ ggplot(data, aes(x = gr_Score, y = sp_Score)) +
 
 correlation <- cor(data$gr_Score, data$sp_Score)
 
-# Print the correlation coefficient
+# Printing the correlation coefficient
 print(paste("Correlation Coefficient:", correlation)) 
 
 # output: "Correlation Coefficient: 0.504050860415546"

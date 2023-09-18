@@ -1,4 +1,5 @@
-# Research Question: ‘Does the correction method impact writing test scores? Writing scores 
+# This project is all about answering this research question:
+# "Does the correction method impact writing test scores?"" Writing scores 
 # for three correction methods (i.e., self-correction, peer correction, and teacher correction) 
 # can be compared using one-way ANOVA. That is, the background variable is the correction method, 
 # and the outcome variable is students’ writing scores.
@@ -9,21 +10,21 @@
 
 
 
-# Install and load the required libraries if you haven't already
+# Installing and loading the readxl libraries
 install.packages("readxl")
 library(readxl)
 
-# Load the dataset from the Excel file
+# Loading the dataset from the Excel file
 ANOVAdata <- read_excel("OneWayANOVA_Data.xlsx")
 
 # If we want to know more about the dataset..
-head(ANOVAdata)
-str(ANOVAdata)
+head(ANOVAdata) # Displaying the first few rows of the dataset
+str(ANOVAdata) # The structure of the dataset
 
 # Before we run the test, one of the important assumptions of running ANOVA must be met,
 # which is Levene's test for homogeneity of variances/testing the equality of variances between groups.
 
-# use the leveneTest() function from the "car" package. 
+# Using the leveneTest() function from the "car" package. 
 
 install.packages("car")
 library(car)
@@ -34,7 +35,7 @@ library(car)
 
 ANOVAdata$CorrectionMethod <- as.factor(ANOVAdata$CorrectionMethod)
 
-# Running the test:
+# Running Levene's test:
 Levene_test <- leveneTest(WritingTestScore ~ CorrectionMethod, data = ANOVAdata)
 print(Levene_test)
 
@@ -50,9 +51,9 @@ print(Levene_test)
 # Now we perform one-way ANOVA using "aov" function.
 
 
-# Perform one-way ANOVA
+# Performing one-way ANOVA
 ANOVA_Result <- aov(WritingTestScore ~ CorrectionMethod, data = ANOVAdata)
-# View the ANOVA results
+# Viewing the ANOVA results
 summary(ANOVA_Result)
 
 
@@ -66,13 +67,15 @@ summary(ANOVA_Result)
 # The ANOVA result shows that The results for The F- value was 181.44 which was
 # statistically significant at 0.05.
 
-# More
-# Now we know that the mean differences, but to know how much they are diff., we should calculate
-# the partial eta squared, using the the etasq() function from the "heplots" package
+
+# Now, to measure the effect size, we calculate the partial eta squared.
+# Installing the "heplots" package
 
 install.packages("heplots")
 library(heplots)
 
+
+# Calculating partial eta squared
 partial_eta_squared <- etasq(ANOVA_Result)
 print(partial_eta_squared)
 
@@ -95,16 +98,16 @@ print(partial_eta_squared)
 
 
 
-# first install imom package and then Install the DescTools package.
+# To perform Scheffe's test, we should first install the "lmom" package and then install "DescTools" package.
 install.packages("lmom")
 install.packages("DescTools")
 library(lmom)
 library(DescTools)
 
-# Perform Scheffe's test
+# Performing Scheffe's test
 scheffe_result <- ScheffeTest(ANOVA_Result, "CorrectionMethod")
 
-# Print the Scheffe's test results
+# Printing the Scheffe's test results
 print(scheffe_result)
 
 # Output:

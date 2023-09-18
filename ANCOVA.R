@@ -1,19 +1,20 @@
+# The main focus of this project is to answer the following research question.
 # RQ: "Does the Correction Method have a significant effect on Writing Test Scores
 # after controlling for the initial pretest scores?"
 
 
-# Load necessary libraries
+# Loading necessary libraries
 library(stats)
 
-# Install and load the required libraries if you haven't already
+# Installing and load the required libraries if you haven't already
 install.packages("readxl")
 library(readxl)
 
-# Load the dataset from the Excel file
+# Loading the dataset from the Excel file
 ANCOVAdata <- read_excel("ANCOVA_Data.xlsx")
 
 
-# Perform ANCOVA
+# Performing ANCOVA
 ancova_result <- lm(WritingTestScore ~ CorrectionMethod + pretest_Score, data = ANCOVAdata)
 
 # View the ANCOVA results
@@ -23,10 +24,10 @@ summary(ancova_result)
 # Assuming you have already performed ANCOVA and stored the result in 'ancova_result'
 library(heplots)
 
-# Calculate partial eta squared for CorrectionMethod
+# Calculating partial eta squared for CorrectionMethod
 partial_eta_squared_correction <- etasq(ancova_result, partial = TRUE, type = 2)
 
-# Print the result
+# Printing the result
 print(partial_eta_squared_correction)
 
 

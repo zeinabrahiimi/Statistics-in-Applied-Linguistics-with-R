@@ -8,22 +8,22 @@
 # Assuming we checked the normality assumptions of the data, we can perform multiple regression analysis to understand how "Motivation," "Stress," and "Confidence" predict
 # "Linguistics_Performance."
 
-#if not installed these libraries, please install them first and then load them.
+# If not installed these libraries, please install them first and then load them.
 # install.packages ("readxl") # install.packages("stats")
-# Load required libraries
+# Loading required libraries
 library(readxl) # If using Excel files
 library(stats) # a library for data analysis
 
 
-# Read the data from Excel
+# Reading the data from Excel
 data <- read_excel("MultipleRegressionData.xlsx") # You should enter the name of your Excel file.
 
-# Perform multiple regression
+# Performing multiple regression
 model <- lm(Linguistics_Performance ~ Motivation + Stress + Confidence, data = data)
 #  the linear regression function lm()
 
 
-# Print the summary of the regression
+# Printing the summary of the regression
 summary(model)
 
 
